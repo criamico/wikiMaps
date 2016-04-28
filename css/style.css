@@ -1,0 +1,134 @@
+.html, body{
+    font-family: 'Catamaran', sans-serif;
+    height: 100%;
+}
+.container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #777776;
+}
+
+
+#map {
+     position:relative;
+    height: 100%;
+    width: 100%;
+}
+
+h3 {
+    font-size: 1em;
+    margin: 0;
+    padding: 20px ;
+}
+
+.form{
+    position: absolute;
+    top: 10px;
+    left: 120px;
+}
+
+.legend{
+    display: block;
+    position: absolute;
+    background-color: rgba(246, 248, 248, 0.8);
+    top: 169px;
+    left: 10px;
+    max-height: 50%;
+    width: 30%;
+    max-width: 300px;
+    overflow: scroll;
+
+}
+
+.list {
+    list-style-type: none;
+    padding: 0 20px;
+    margin-top: 0;
+}
+
+.toplist{
+    display: block;
+    position: absolute;
+    width: 30%;
+    max-width: 300px;
+    background-color: rgba(246, 248, 248, 0.8);
+    top: 50px;
+    left: 10px;
+
+}
+.toplist>button {
+    float: right;
+    color: #1BA159;
+    background: none;
+    outline:none;
+}
+
+
+
+.list>li{
+   /*  padding: 15px; */
+}
+
+.list>li>hr{
+    margin: 8px 0 8px 0;
+}
+
+.icon {
+    width: 16px;
+}
+
+.item{
+    font-size: 0.7em;
+}
+
+.item>a{
+    color: #2B2B2A;
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+p{
+     margin: 0;
+}
+
+a {
+    color: #2196F3;
+    text-decoration: none;
+}
+
+
+
+.infoWindowContent {
+    z-index: 10;
+    overflow: scroll;
+}
+
+
+.infoWindowContent>h2 {
+    margin: 5px auto;
+    color: #1BA159;
+}
+.infoWindowContent>span{
+    line-height: 2em;
+}
+
+
+button{
+    padding: 4px 8px;
+    font-size: 0.9em;
+    color: white;
+    background-color: #1BA159;
+    border: none;
+}

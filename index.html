@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app ="gmapsApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maps test</title>
+    <link href='https://fonts.googleapis.com/css?family=Catamaran:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div ng-app="mapsApp" ng-controller="MapCtrl" id= "Main">
+        <div class= container>
+            <div id="map"></div>
+                <div class="form">
+                    <input name="category" type="text" ng-model="request.query" > </input>
+                    <button ng-click = "newSearch()">Submit</button>
+                </div>
+                <div class= "toplist">
+                    <button  ng-click = "toggleVisibility()">{{panelVisible && "Show" || "Hide"}}</button>
+
+                    <h3>You've searched:</br> "{{request.query}}" </br>in Dublin</h3>
+                </div>
+                <div class="legend" ng-hide="panelVisible">
+                        <ul class="list" >
+                            <li class="item" ng-repeat="point in markersList | orderBy : 'title'">
+                                <img class="icon" ng-src="{{point.icon}}">
+                                <a href="#" ng-click="openInfoWindow($event, point.marker)">{{point.marker.name}}</a>
+                                <p> <a href="{{point.WikiArticles[0].url}}"> {{point.WikiArticles[0].title}}</a> </p>
+                                <hr>
+                            </li>
+                        </ul>
+
+                 </div> <!-- legend -->
+            </div> <!-- container -->
+        </div>
+
+
+
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?&libraries=places"></script> <!-- also include places APIs-->
+    <script src="js/app.js" ></script>
+</body>
+</html>
