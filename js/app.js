@@ -55,9 +55,7 @@
             });
 
 
-
             $scope.$apply(function() { /*force Angular to update the view*/
-
                 $scope.markersList.push(interestPoint);
             });
 
@@ -73,9 +71,7 @@
             var wikidata = {};
             var wikiq = '';
             wikiq = poI.marker.name.replace(/\s/g, "_");
-
             /*console.log(wikiq);*/
-
 
             var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + wikiq + '&format=json&callback=JSON_CALLBACK';
 
@@ -109,10 +105,11 @@
             $scope.markersList = [];
 
 
+
             /*set map options*/
             var mapOptions = {
                     zoom: 12,
-                    center: $scope.request.location, /*$scope.latlng*/
+                    center: $scope.current.request.location,
                     mapTypeId: google.maps.MapTypeId.ROADMAP /*HYBRID, SATELLITE, TERRAIN*/
             };
 
@@ -128,15 +125,18 @@
             var geocoder = new google.maps.Geocoder();
             service = new google.maps.places.PlacesService($scope.map);
 
+            $scope.current.address = $scope.address;
+            $scope.current.request.radius = '15000';
+            $scope.current.request.query = $scope.query;
+
              /*Call the Google geocoding service to get lat and long of the searched address*/
-            geocoder.geocode({'address': $scope.address}, function(results, geostatus) {
+            geocoder.geocode({'address': $scope.current.address}, function(results, geostatus) {
                 if (geostatus === google.maps.GeocoderStatus.OK) {
-                    /*console.log(results[0].geometry.location);*/
-                    $scope.request.location = results[0].geometry.location;
-                    $scope.map.setCenter($scope.request.location);
+                    $scope.current.request.location = results[0].geometry.location;
+                    $scope.map.setCenter($scope.current.request.location);
 
                     /*make a request to google places database to retrieve points of interest*/
-                    service.textSearch($scope.request, function(results, status){
+                    service.textSearch($scope.current.request, function(results, status){
                         if (status == google.maps.places.PlacesServiceStatus.OK) {
                             /*if successfull, create Markers and display them on the map*/
                             for (var i = 0; i < results.length; i++) {
@@ -147,27 +147,43 @@
                                 $scope.getWiki($scope.markersList[i]);
                             }
                         } else
-                            Alert('Sorry, Places query was not successful, status: ' + status);
+                            alert('Sorry, Places query was not successful, status: ' + status);
                     });
                 } else
-                  console.log('Sorry, Geocode query was not successful, status ' + geostatus);
+                  alert('Sorry, Geocode query was not successful, status ' + geostatus);
             });
 
 
 
         };
 
-        /*Initialize with a query - default is "Museum in Dublin"*/
-        $scope.address = 'Dublin';
-        $scope.latlng = new google.maps.LatLng(53.348551, -6.264162);
 
-        $scope.request = {
-            location: $scope.latlng,
-            radius: '15000',
-            query: 'Museum',
+        $scope.current = {
+            address: '',
+            request: {}
         };
 
+        /*Initialize with a query - default is "Museum in Dublin"*/
+        $scope.address = 'Dublin';
+        $scope.query = 'Museum';
+        $scope.radius = 5000; /*up to 50000 meters*/
+        var latlng = new google.maps.LatLng(53.348551, -6.264162);
+
+       /* var request = {
+            location: latlng,
+            radius: '15000',
+            query: $scope.query,
+        };
+        $scope.current.request = $scope.request;*/
+
+        $scope.current.address = $scope.address;
+        $scope.current.request.location = latlng;
+        $scope.current.request.radius = $scope.radius;
+        $scope.current.request.query =  $scope.query;
+
+
         $scope.newSearch();
+
 
 
 

@@ -12,9 +12,9 @@
     <div ng-app="mapsApp" ng-controller="MapCtrl" id= "Main">
         <div class= container>
             <div id="map"></div>
-                <form class="form" ng-submit="request.query !== '' && address !== '' && newSearch() ">
+                <form class="form" ng-submit="query !== '' && address !== '' && newSearch() ">
                     <label> What are you looking for?
-                        <input name="category" type="text" ng-model="request.query" required> </input>
+                        <input name="category" type="text" ng-model="query" required> </input>
                     </label>
                     <label> Where?
                         <input name="city" type="text" ng-model="address" required> </input>
@@ -25,7 +25,7 @@
 
                 <div class= "toplist">
                     <button  ng-click = "toggleVisibility()">{{panelVisible && "Show" || "Hide"}}</button>
-                    <h3>Showing first 20 results for:</br> "{{request.query}}" </br>in {{address}}</h3>
+                    <h3>Showing first 20 results for:</br> "{{current.request.query}}" </br>in {{current.address}}</h3>
                 </div> <!-- toplist -->
                 <div class="legend" ng-hide="panelVisible">
                         <ul class="list" >
