@@ -1,6 +1,7 @@
 .html, body{
     font-family: 'Catamaran', sans-serif;
     height: 100%;
+    color: #262929;
 }
 .container{
     position: absolute;
@@ -21,7 +22,7 @@
 
 
 #map {
-     position:relative;
+    position:relative;
     height: 100%;
     width: 100%;
 }
@@ -29,22 +30,50 @@
 h3 {
     font-size: 1em;
     margin: 0;
-    padding: 20px ;
+    padding: 10px 20px;
 }
 
+.form, .legend, .toplist{
+    background-color: rgba(246, 248, 248, 0.9);
+    box-shadow: 3px 3px 7px #B2AFAF;
+}
+
+
+/* Form */
 .form{
     position: absolute;
-    top: 10px;
-    left: 120px;
+    top: 0px;
+    left: 130px;
+    padding: 8px 10px;
 }
 
+label{
+    margin: 10px;
+}
+
+input{
+    padding: 3px;
+    margin-left: 5px;
+
+}
+
+button{
+    padding: 4px 8px;
+    font-size: 0.9em;
+    color: white;
+    background-color: #1BA159;
+    border: none;
+    outline:none;
+}
+
+
+/* Legend panel */
 .legend{
     display: block;
     position: absolute;
-    background-color: rgba(246, 248, 248, 0.8);
-    top: 169px;
+    top: 160px;
     left: 10px;
-    max-height: 50%;
+    max-height: 60%;
     width: 30%;
     max-width: 300px;
     overflow: scroll;
@@ -53,8 +82,8 @@ h3 {
 
 .list {
     list-style-type: none;
-    padding: 0 20px;
-    margin-top: 0;
+    padding: 10px 20px;
+    margin: 0;
 }
 
 .toplist{
@@ -62,16 +91,15 @@ h3 {
     position: absolute;
     width: 30%;
     max-width: 300px;
-    background-color: rgba(246, 248, 248, 0.8);
-    top: 50px;
+    top: 60px;
     left: 10px;
 
 }
 .toplist>button {
     float: right;
-    color: #1BA159;
+    color: #18844A;
     background: none;
-    outline:none;
+    padding: 10px;
 }
 
 
@@ -81,7 +109,7 @@ h3 {
 }
 
 .list>li>hr{
-    margin: 8px 0 8px 0;
+   /*  margin: 8px 0 8px 0; */
 }
 
 .icon {
@@ -109,7 +137,7 @@ a {
 }
 
 
-
+/* InfoWindow */
 .infoWindowContent {
     z-index: 10;
     overflow: scroll;
@@ -124,11 +152,3 @@ a {
     line-height: 2em;
 }
 
-
-button{
-    padding: 4px 8px;
-    font-size: 0.9em;
-    color: white;
-    background-color: #1BA159;
-    border: none;
-}

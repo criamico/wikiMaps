@@ -74,7 +74,7 @@
             var wikiq = '';
             wikiq = poI.marker.name.replace(/\s/g, "_");
 
-            console.log(wikiq);
+            /*console.log(wikiq);*/
 
 
             var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + wikiq + '&format=json&callback=JSON_CALLBACK';
@@ -93,9 +93,12 @@
 
                         wikidata = {};
                     }
-                });
-            };
+                }, function(LoadedData, status, error){
+                        alert("Sorry the wikipedia Query was not successful -status: ", status);
 
+                });
+
+            };
 
 
         /*call at init and every time a new query is submitted*/
@@ -106,9 +109,10 @@
             $scope.markersList = [];
 
 
+            /*set map options*/
             var mapOptions = {
                     zoom: 12,
-                    center: $scope.latlng,
+                    center: $scope.request.location, /*$scope.latlng*/
                     mapTypeId: google.maps.MapTypeId.ROADMAP /*HYBRID, SATELLITE, TERRAIN*/
             };
 
@@ -121,27 +125,46 @@
             });
 
 
-            /*make a request to google places database*/
+            var geocoder = new google.maps.Geocoder();
             service = new google.maps.places.PlacesService($scope.map);
 
-            service.textSearch($scope.request, function(results, status){
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    for (var i = 0; i < results.length; i++) {
-                        $scope.createMarker(results[i]);
-                    }
-                    for (var i = 0; i < $scope.markersList.length; i++) {
-                        $scope.getWiki($scope.markersList[i]);
-                    }
-                }
+             /*Call the Google geocoding service to get lat and long of the searched address*/
+            geocoder.geocode({'address': $scope.address}, function(results, geostatus) {
+                if (geostatus === google.maps.GeocoderStatus.OK) {
+                    /*console.log(results[0].geometry.location);*/
+                    $scope.request.location = results[0].geometry.location;
+                    $scope.map.setCenter($scope.request.location);
+
+                    /*make a request to google places database to retrieve points of interest*/
+                    service.textSearch($scope.request, function(results, status){
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
+                            /*if successfull, create Markers and display them on the map*/
+                            for (var i = 0; i < results.length; i++) {
+                                $scope.createMarker(results[i]);
+                            }
+                            /*for each marker, call wikipedia API and retrieve the first result*/
+                            for (var i = 0; i < $scope.markersList.length; i++) {
+                                $scope.getWiki($scope.markersList[i]);
+                            }
+                        } else
+                            Alert('Sorry, Places query was not successful, status: ' + status);
+                    });
+                } else
+                  console.log('Sorry, Geocode query was not successful, status ' + geostatus);
             });
+
+
 
         };
 
+        /*Initialize with a query - default is "Museum in Dublin"*/
+        $scope.address = 'Dublin';
         $scope.latlng = new google.maps.LatLng(53.348551, -6.264162);
+
         $scope.request = {
             location: $scope.latlng,
             radius: '15000',
-            query: 'museum',
+            query: 'Museum',
         };
 
         $scope.newSearch();

@@ -12,15 +12,21 @@
     <div ng-app="mapsApp" ng-controller="MapCtrl" id= "Main">
         <div class= container>
             <div id="map"></div>
-                <div class="form">
-                    <input name="category" type="text" ng-model="request.query" > </input>
-                    <button ng-click = "newSearch()">Submit</button>
-                </div>
+                <form class="form" ng-submit="request.query !== '' && address !== '' && newSearch() ">
+                    <label> What are you looking for?
+                        <input name="category" type="text" ng-model="request.query" required> </input>
+                    </label>
+                    <label> Where?
+                        <input name="city" type="text" ng-model="address" required> </input>
+                    </label>
+                    <button type="submit" >Submit</button> <!-- ng-click = "newSearch()" -->
+                </form> <!-- form -->
+
+
                 <div class= "toplist">
                     <button  ng-click = "toggleVisibility()">{{panelVisible && "Show" || "Hide"}}</button>
-
-                    <h3>You've searched:</br> "{{request.query}}" </br>in Dublin</h3>
-                </div>
+                    <h3>Showing first 20 results for:</br> "{{request.query}}" </br>in {{address}}</h3>
+                </div> <!-- toplist -->
                 <div class="legend" ng-hide="panelVisible">
                         <ul class="list" >
                             <li class="item" ng-repeat="point in markersList | orderBy : 'title'">
@@ -30,8 +36,9 @@
                                 <hr>
                             </li>
                         </ul>
-
                  </div> <!-- legend -->
+
+
             </div> <!-- container -->
         </div>
 
