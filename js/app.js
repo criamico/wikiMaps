@@ -6,10 +6,15 @@
         $scope.request = {};
         $scope.panelVisible = false;
 
-        // toggle visibility of panel
+        // toggle visibility of results panel
         $scope.toggleVisibility =function(){
             $scope.panelVisible = $scope.panelVisible ? false : true;
         }
+
+        // When query is empty, hide the whole panel, show it again when a query is submitted
+        $scope.panelHidden = function(){
+                return $scope.current.request.query !== '' ? false : true;
+            };
 
 
         /*create the customized infoWindow, opens on click*/
@@ -60,9 +65,11 @@
             });
 
              /*create the info window */
-            interestPoint.content = '<h2>' + interestPoint.marker.name + '</h2>' + '<div class="infoWindowContent">' + interestPoint.marker.address + '</div>';
+            interestPoint.content = '<div class="infoWindowContent"><h2>' + interestPoint.marker.name + '</h2>' + interestPoint.marker.address + '</div>';
             $scope.addInfoWindow(interestPoint);
         };
+
+
 
 
 
@@ -96,6 +103,26 @@
 
             };
 
+            /*make a request to google places database to retrieve points of interest*/
+            $scope.getPlaces = function(){
+
+                service = new google.maps.places.PlacesService($scope.map);
+                service.textSearch($scope.current.request, function(results, status){
+                    if (status == google.maps.places.PlacesServiceStatus.OK) {
+                        /*if successful, create Markers and display them on the map*/
+                        for (var i = 0; i < results.length; i++) {
+                            $scope.createMarker(results[i]);
+                        }
+                        /*for each marker, call wikipedia API and retrieve the first result*/
+                        for (var i = 0; i < $scope.markersList.length; i++) {
+                            $scope.getWiki($scope.markersList[i]);
+                        }
+                    } else
+                        alert('Sorry, Places query was not successful, status: ' + status);
+                });
+            };
+
+
 
         /*call at init and every time a new query is submitted*/
         $scope.newSearch = function(){
@@ -104,7 +131,9 @@
             $scope.infoWindow = new google.maps.InfoWindow({maxWidth: 350});
             $scope.markersList = [];
 
-
+            $scope.current.address = $scope.address;
+            $scope.current.request.radius = $scope.radius;
+            $scope.current.request.query = $scope.query;
 
             /*set map options*/
             var mapOptions = {
@@ -121,34 +150,20 @@
                $scope.map.setCenter(center);
             });
 
-
             var geocoder = new google.maps.Geocoder();
-            service = new google.maps.places.PlacesService($scope.map);
 
-            $scope.current.address = $scope.address;
-            $scope.current.request.radius = '15000';
-            $scope.current.request.query = $scope.query;
-
-             /*Call the Google geocoding service to get lat and long of the searched address*/
+             /*Call the Google geocoding service to get lat and long for the searched address*/
             geocoder.geocode({'address': $scope.current.address}, function(results, geostatus) {
                 if (geostatus === google.maps.GeocoderStatus.OK) {
                     $scope.current.request.location = results[0].geometry.location;
                     $scope.map.setCenter($scope.current.request.location);
 
-                    /*make a request to google places database to retrieve points of interest*/
-                    service.textSearch($scope.current.request, function(results, status){
-                        if (status == google.maps.places.PlacesServiceStatus.OK) {
-                            /*if successfull, create Markers and display them on the map*/
-                            for (var i = 0; i < results.length; i++) {
-                                $scope.createMarker(results[i]);
-                            }
-                            /*for each marker, call wikipedia API and retrieve the first result*/
-                            for (var i = 0; i < $scope.markersList.length; i++) {
-                                $scope.getWiki($scope.markersList[i]);
-                            }
-                        } else
-                            alert('Sorry, Places query was not successful, status: ' + status);
-                    });
+                    /*Retrieve list of places*/
+                    if ($scope.current.request.query !== '')
+                        $scope.getPlaces();
+
+
+
                 } else
                   alert('Sorry, Geocode query was not successful, status ' + geostatus);
             });
@@ -163,26 +178,18 @@
             request: {}
         };
 
+
         /*Initialize with a query - default is "Museum in Dublin"*/
         $scope.address = 'Dublin';
-        $scope.query = 'Museum';
-        $scope.radius = 5000; /*up to 50000 meters*/
-        var latlng = new google.maps.LatLng(53.348551, -6.264162);
+        $scope.query =  '';
+        $scope.radius = 1500; /*up to 50000 meters*/
 
-       /* var request = {
-            location: latlng,
-            radius: '15000',
-            query: $scope.query,
-        };
-        $scope.current.request = $scope.request;*/
-
-        $scope.current.address = $scope.address;
-        $scope.current.request.location = latlng;
-        $scope.current.request.radius = $scope.radius;
-        $scope.current.request.query =  $scope.query;
 
 
         $scope.newSearch();
+
+
+
 
 
 
