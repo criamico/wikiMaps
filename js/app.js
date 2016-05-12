@@ -163,7 +163,6 @@
                         $scope.getPlaces();
 
 
-
                 } else
                   alert('Sorry, Geocode query was not successful, status ' + geostatus);
             });
@@ -183,7 +182,6 @@
         $scope.address = 'Dublin';
         $scope.query =  '';
         $scope.radius = 1500; /*up to 50000 meters*/
-
 
 
         $scope.newSearch();

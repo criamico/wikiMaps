@@ -7,6 +7,7 @@
     <title>wikiMaps</title>
     <link href='https://fonts.googleapis.com/css?family=Catamaran:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-small.css">
 </head>
 
 <body>
@@ -28,18 +29,19 @@
 
 
                 <div class= "toplist" ng-hide="panelHidden()">
-                    <h3>Showing 20 results for:</br> "{{current.request.query}}" </br>in {{current.address}}</h3>
-                    <button  ng-click = "toggleVisibility()">{{panelVisible && "Show" || "Hide"}}</button>
-                </div> <!-- toplist -->
+                    <!-- <h3>Showing 20 results for:"{{current.request.query}}" in {{current.address}}</h3> -->
+                    <button class="btn-hide" ng-click = "toggleVisibility()">{{panelVisible && "Show" || "Hide"}}</button>
+                </div>  <!-- toplist-->
+
                 <div class="legend" ng-hide="panelHidden() || panelVisible ">
-                        <ul class="list" >
-                            <li class="item" ng-repeat="point in markersList | orderBy : 'title'">
-                                <img class="icon" ng-src="{{point.icon}}">
-                                <a href="#" ng-click="openInfoWindow($event, point.marker)">{{point.marker.name}}</a>
-                                <p> <a href="{{point.WikiArticles[0].url}}"> {{point.WikiArticles[0].title}}</a> </p>
-                                <hr>
-                            </li>
-                        </ul>
+                    <ul class="list" >
+                        <li class="item" ng-repeat="point in markersList | orderBy : 'title'">
+                            <img class="icon" ng-src="{{point.icon}}">
+                            <a href="#" ng-click="openInfoWindow($event, point.marker)">{{point.marker.name}}</a>
+                            <p> <a href="{{point.WikiArticles[0].url}}"> {{point.WikiArticles[0].title}}</a> </p>
+                            <!-- <hr> -->
+                        </li>
+                    </ul>
                  </div> <!-- legend -->
 
 

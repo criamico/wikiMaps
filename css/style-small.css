@@ -1,0 +1,66 @@
+@media screen and (max-width: 800px) {
+
+.form{
+    display: block;
+    max-width: 50%;
+    left: initial;
+    right: 0;
+    text-align: center;
+}
+label{
+    width: 100%;
+    display: inline-block;
+    margin: 5px auto;
+}
+input{
+    max-width: 90%;
+}
+button{
+    display: block;
+    margin: 10px auto;
+}
+
+.legend{
+    max-width: initial;
+    width: 100%;
+    max-height: 30%;
+    bottom: 0;
+    top: initial;
+    left: 0;
+}
+
+.toplist{
+    max-width: initial;
+    width: 100%;
+    left: 0;
+    bottom: 30%;
+    top: initial;
+}
+
+h3{
+    padding: 0 20px;
+    font-size: 0.9em;
+}
+
+.btn-hide{
+    margin: 0;
+    font-size: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
