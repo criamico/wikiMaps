@@ -5,16 +5,31 @@
         $scope.markersList = [];
         $scope.request = {};
         $scope.panelVisible = false;
+        $scope.tab = 1;
 
-        // toggle visibility of results panel
-        $scope.toggleVisibility =function(){
-            $scope.panelVisible = $scope.panelVisible ? false : true;
+
+        /*select tab*/
+        $scope.selectTab = function(newTab){
+            $scope.tab = newTab;
+        };
+
+        /*check which tab is selected*/
+        $scope.tabIsSelected = function(newTab){
+            return $scope.tab === newTab;
+        };
+
+
+        $scope.IsMobile = function(){
+            return (window.innerWidth < 800) ? true : false;
+
         }
 
         // When query is empty, hide the whole panel, show it again when a query is submitted
         $scope.panelHidden = function(){
                 return $scope.current.request.query !== '' ? false : true;
             };
+
+
 
 
         /*create the customized infoWindow, opens on click*/
@@ -117,6 +132,7 @@
                         for (var i = 0; i < $scope.markersList.length; i++) {
                             $scope.getWiki($scope.markersList[i]);
                         }
+                        $scope.selectTab(2);
                     } else
                         alert('Sorry, Places query was not successful, status: ' + status);
                 });
@@ -128,7 +144,7 @@
         $scope.newSearch = function(){
             /*Initialize the map*/
             var mapDiv = document.getElementById('map');
-            $scope.infoWindow = new google.maps.InfoWindow({maxWidth: 350});
+            $scope.infoWindow = new google.maps.InfoWindow({maxWidth: 320});
             $scope.markersList = [];
 
             $scope.current.address = $scope.address;
@@ -139,7 +155,19 @@
             var mapOptions = {
                     zoom: 12,
                     center: $scope.current.request.location,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP /*HYBRID, SATELLITE, TERRAIN*/
+                    mapTypeId: google.maps.MapTypeId.ROADMAP /*HYBRID, SATELLITE, TERRAIN*/,
+                    mapTypeControlOptions: {
+                        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                        position: google.maps.ControlPosition.TOP_RIGHT
+                    },
+                    zoomControl: true,
+                    zoomControlOptions: {
+                        position: google.maps.ControlPosition.RIGHT_CENTER
+                    },
+                    streetViewControl: true,
+                    streetViewControlOptions: {
+                        position: google.maps.ControlPosition.RIGHT_CENTER
+                    },
             };
 
             $scope.map = new google.maps.Map(mapDiv, mapOptions);
@@ -185,6 +213,7 @@
 
 
         $scope.newSearch();
+
 
 
 

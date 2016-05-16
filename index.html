@@ -14,35 +14,34 @@
     <div ng-app="mapsApp" ng-controller="MapCtrl" id= "Main">
         <div class= container>
             <div id="map"></div>
-                <form class="form" ng-submit="address !== '' && newSearch() ">
-                    <label> What are you looking for?
-                        <input name="category" type="text" ng-model="query" placeholder="Try museums or malls..."> </input>
-                    </label>
-                    <label> Where?
-                        <input name="city" type="text" ng-model="address" required> </input>
-                    </label>
-                    <label> Radius (in meters):
-                        <input name="radius" type="number" ng-model="radius" required> </input>
-                    </label>
-                    <button type="submit" >Submit</button>
-                </form> <!-- form -->
+
+            <form class="form" ng-show="tabIsSelected(1) || !IsMobile()" ng-submit="address !== '' && newSearch() ">
+                <label> What are you looking for?</label>
+                    <input name="category" type="text" ng-model="query" placeholder="Try museums or malls..."> </input>
+
+                <label> Where? </label>
+                    <input name="city" type="text" ng-model="address" placeholder="Type a city" required> </input>
+
+                <label> Radius:</label>
+                    <input name="radius" type="number" ng-model="radius" placeholder="meters" required> </input>
+
+                <button id="submit-btn" type="submit" >Submit</button>
+            </form> <!-- form -->
 
 
-                <div class= "toplist" ng-hide="panelHidden()">
-                    <!-- <h3>Showing 20 results for:"{{current.request.query}}" in {{current.address}}</h3> -->
-                    <button class="btn-hide" ng-click = "toggleVisibility()">{{panelVisible && "Show" || "Hide"}}</button>
-                </div>  <!-- toplist-->
-
-                <div class="legend" ng-hide="panelHidden() || panelVisible ">
+                <div class="legend" ng-hide="panelHidden() || !tabIsSelected(2) ">
                     <ul class="list" >
                         <li class="item" ng-repeat="point in markersList | orderBy : 'title'">
                             <img class="icon" ng-src="{{point.icon}}">
                             <a href="#" ng-click="openInfoWindow($event, point.marker)">{{point.marker.name}}</a>
                             <p> <a href="{{point.WikiArticles[0].url}}"> {{point.WikiArticles[0].title}}</a> </p>
-                            <!-- <hr> -->
                         </li>
                     </ul>
                  </div> <!-- legend -->
+                  <div class= "toplist" >
+                    <button class="btn-tab" ng-hide="panelHidden() || !IsMobile()" ng-click = "selectTab(1)">New Search</button>
+                    <button class="btn-tab" ng-hide="panelHidden() || !IsMobile()" ng-click = "selectTab(2)">Results</button>
+                </div>  <!-- toplist-->
 
 
             </div> <!-- container -->

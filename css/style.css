@@ -43,7 +43,7 @@ h3 {
 .form{
     position: absolute;
     top: 0px;
-    left: 130px;
+    left: 0px;
     padding: 0 10px;
     display: flex;
     flex-wrap: wrap;
@@ -58,7 +58,8 @@ label{
 
 input{
     padding: 3px;
-    margin-left: 5px;
+    /* margin-left: 5px; */
+    margin: 0 0 10px 5px;
 
 }
 
@@ -69,17 +70,25 @@ button{
     background-color: #1BA159;
     border: none;
     outline:none;
+    margin-left: auto;
+    margin-left: 15px;
 }
+
+#submit-btn{
+    background-color: #FF9800;
+    margin-bottom: 10px;
+}
+
 
 
 /* Legend panel */
 .legend{
     display: block;
     position: absolute;
-    top: 130px;
+    top: 90px;
     left: 10px;
     max-height: 60%;
-    width: 30%;
+    width: 35%;
     max-width: 300px;
     overflow: scroll;
 
@@ -100,21 +109,12 @@ button{
     left: 10px;
 
 }
-.btn-hide {
-   /*  float: right; */
-    /* color: #18844A;
-    background: none; */
-}
-
 
 
 .list>li{
     margin-bottom: 12px;
 }
 
-.list>li>hr{
-   /*  margin: 8px 0 8px 0; */
-}
 
 .icon {
     width: 16px;
@@ -153,7 +153,7 @@ p{
 
 .infoWindowContent>h2 {
     margin: 5px auto;
-    color: #1BA159;
+    color: #0B4E84;
 }
 .infoWindowContent>span{
     line-height: 2em;
