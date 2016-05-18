@@ -20,7 +20,7 @@
 
 
         $scope.IsMobile = function(){
-            return (window.innerWidth < 800) ? true : false;
+            return (window.innerWidth < 768) ? true : false;
 
         }
 
@@ -164,7 +164,7 @@
                     zoomControlOptions: {
                         position: google.maps.ControlPosition.RIGHT_CENTER
                     },
-                    streetViewControl: true,
+                    streetViewControl: !$scope.IsMobile(), /*shows pegman only for larger screens*/
                     streetViewControlOptions: {
                         position: google.maps.ControlPosition.RIGHT_CENTER
                     },

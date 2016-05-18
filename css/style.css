@@ -45,7 +45,7 @@ h3 {
     top: 0px;
     left: 0px;
     padding: 0 10px;
-    display: flex;
+    display: flex; /* desktop */
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: baseline;

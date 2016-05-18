@@ -135,3 +135,15 @@ h3{
 
 
 }
+
+@media screen and (max-height: 300px){
+    .form, .legend{
+        height: 100%;
+    }
+    .toplist{
+        bottom: 100%;
+    }
+
+
+
+}
