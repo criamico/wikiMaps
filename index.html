@@ -14,18 +14,20 @@
         <div class= container>
             <div id="map"></div>
 
-            <form class="form" ng-show="tabIsSelected(1) || !IsMobile()" ng-submit="address !== '' && newSearch() ">
-                <label> What are you looking for?</label>
-                    <input name="category" type="text" ng-model="query" placeholder="Try museums or malls..."> </input>
+            <div class= "form-section">
+                <form class="form" ng-show="tabIsSelected(1) || !IsMobile()" ng-submit="address !== '' && newSearch() ">
+                    <label> What are you looking for?</label>
+                        <input name="category" type="text" ng-model="query" placeholder="Try museums or malls..."> </input>
 
-                <label> Where? </label>
-                    <input name="city" type="text" ng-model="address" placeholder="Type a city" required> </input>
+                    <label> Where? </label>
+                        <input name="city" type="text" ng-model="address" placeholder="Type a city" required> </input>
 
-                <label> Radius:</label>
-                    <input name="radius" type="number" ng-model="radius" placeholder="meters" required> </input>
+                    <label> Radius:</label>
+                        <input name="radius" type="number" ng-model="radius" placeholder="meters" required> </input>
 
-                <button id="submit-btn" type="submit" >Submit</button>
-            </form> <!-- form -->
+                    <button id="submit-btn" type="submit" >Submit</button>
+                </form> <!-- form -->
+            </div>
 
 
 

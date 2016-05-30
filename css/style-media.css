@@ -32,13 +32,13 @@ h3 {
     padding: 10px 20px 0px 10px;
 }
 
-.form, .legend{
+.form-section, .legend{
     background-color: rgba(246, 248, 248, 0.9);
     box-shadow: 3px 3px 7px #B2AFAF;
 }
 
 /* Form */
-.form{
+.form-section{
     position: absolute;
     top: 0px;
     left: 0px;
@@ -123,13 +123,9 @@ p{
     margin-left: 10px;
 }
 
-
-
-
-
 /* Media queries */
 @media screen and (max-width: 768px) {
-    .form, .legend{
+    .form-section, .legend{
         height: 45%;
     }
 
@@ -138,9 +134,13 @@ p{
         width: 100%;
         left: 0;
     }
-    .form{
+    .form-section{
         width: 100%;
     }
+    .form{
+        margin: 5% auto;
+    }
+
     input{
         max-width: 50%;
     }
@@ -172,18 +172,16 @@ p{
 
 
 }
-/*
-@media screen and (min-width: 431px) and (max-width: 800px){
+
+@media screen and (min-width: 431px) and (max-width: 800px) {
+
     .form{
-        text-align: left;
+        width: 55%;
+        margin: 5% auto;
     }
 
-    input{
-        margin-right: 40%;
-    }
+}
 
-
-} */
 
 @media screen and (min-width: 769px) {
   /*  @media screen and (min-width: 431px) { */
@@ -192,7 +190,7 @@ p{
         margin: 0 0 10px 5px;
         }
 
-    .form{
+    .form-section{
         position: absolute;
         top: 0px;
         left: 0px;
@@ -230,7 +228,7 @@ p{
 
 
 @media screen and (max-height: 300px){ /* handle the keyboard open case */
-    .form, .legend{
+    .form-section, .legend{
         height: 100%;
     }
     .toplist{
