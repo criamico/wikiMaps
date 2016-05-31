@@ -184,7 +184,6 @@ p{
 
 
 @media screen and (min-width: 769px) {
-  /*  @media screen and (min-width: 431px) { */
     input{
         padding: 3px;
         margin: 0 0 10px 5px;
@@ -202,6 +201,10 @@ p{
         align-items: baseline;
         /* text-align: center; */
     }
+    .form{
+        margin-top: 5px;
+    }
+
     label{
         width: initial;
         margin: 10px;
