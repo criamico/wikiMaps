@@ -4,6 +4,8 @@
 
 This AngularJS webapp lets you search points of interest in a chosen location, fetching them from the Google Places database, then queries Wikipedia db to display related information in a map.
 
+Demo page visible at http://criamico.github.io/wikiMaps/
+
 
 APIs used:
 * https://angularjs.org/
