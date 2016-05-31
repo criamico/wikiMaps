@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app ="gmapsApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta author="criamico" >
+    <title>wikiMaps</title>
+    <link href='https://fonts.googleapis.com/css?family=Catamaran:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style-media.css">
+</head>
+
+<body>
+    <div ng-app="mapsApp" ng-controller="MapCtrl" id= "Main">
+        <div class= container>
+            <div id="map"></div>
+
+            <div class= "form-section">
+                <form class="form" ng-show="tabIsSelected(1) || !IsMobile()" ng-submit="address !== '' && newSearch() ">
+                    <label> What are you looking for?</label>
+                        <input name="category" type="text" ng-model="query" placeholder="Try museums or malls..."> </input>
+
+                    <label> Where? </label>
+                        <input name="city" type="text" ng-model="address" placeholder="Type a city" required> </input>
+
+                    <label> Radius:</label>
+                        <input name="radius" type="number" ng-model="radius" placeholder="meters" required> </input>
+
+                    <button id="submit-btn" type="submit" >Submit</button>
+                </form> <!-- form -->
+            </div>
+
+
+
+
+                <div class="legend" ng-hide="panelHidden() || !tabIsSelected(2) ">
+                    <ul class="list" >
+                        <li class="item" ng-repeat="point in markersList | orderBy : 'title'">
+                            <img class="icon" ng-src="{{point.icon}}">
+                            <a href="#" ng-click="openInfoWindow($event, point.marker)">{{point.marker.name}}</a>
+                            <p> <a href="{{point.WikiArticles[0].url}}"> {{point.WikiArticles[0].title}}</a> </p>
+                        </li>
+                    </ul>
+                 </div> <!-- legend -->
+                  <div class= "toplist" >
+                    <button class="btn-tab" ng-hide="panelHidden() || !IsMobile()" ng-click = "selectTab(1)">New Search</button>
+                    <button class="btn-tab" ng-hide="panelHidden() || !IsMobile()" ng-click = "selectTab(2)">Results</button>
+                </div>  <!-- toplist-->
+
+
+            </div> <!-- container -->
+        </div>
+
+
+
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?&libraries=places"></script> <!-- also include places APIs-->
+    <script src="js/app.js" ></script>
+</body>
+</html>
