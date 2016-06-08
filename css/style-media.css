@@ -51,9 +51,13 @@ h3 {
     left: 0;
     padding: 0;
 }
+.form{
+    max-width: 100%;
+}
 
 .form-row{
         display: inline-block;
+        margin: 0 1em;
 }
 
 label{
@@ -62,7 +66,6 @@ label{
 
 input{
     padding: 2px;
-/*     margin: 0 25%; */
 }
 
 button{
@@ -128,11 +131,11 @@ p{
 }
 
 .author{
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 /* Media queries */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .form-section, .legend{
         height: 45%;
     }
@@ -145,11 +148,9 @@ p{
     .form-section{
         width: 100%;
     }
-    .form{
-        margin: 5% auto;
-    }
+
     .title{
-       /*  margin-top: 10px; */
+        margin-top: 10px;
     }
 
     input{
@@ -162,7 +163,7 @@ p{
     }
     #submit-btn{
         display: block;
-        margin: 10px auto;
+        margin: 0.5em auto;
     }
     .legend{
         width: 100%;
@@ -181,20 +182,18 @@ p{
         display: inline-block;
     }
 
-
 }
 
 @media screen and (min-width: 431px) and (max-width: 800px) {
 
     .form{
-        width: 55%;
         margin: 0 auto;
     }
 
 }
 
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 801px) {
     input{
         padding: 3px;
         margin: 0 0 10px 5px;

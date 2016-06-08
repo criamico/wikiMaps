@@ -15,9 +15,9 @@
         <div class= container>
             <div id="map"></div>
 
-            <div class= "form-section">
+            <div class= "form-section" ng-show="tabIsSelected(1) || !IsMobile()"ng-cloak>
                 <p class="title">What are you looking for?</p>
-                <form class="form" ng-show="tabIsSelected(1) || !IsMobile()" ng-submit="address !== '' && newSearch() ">
+                <form class="form"  ng-submit="address !== '' && newSearch() ">
                     <div class="form-row">
                         <label><i class="fa fa-search" aria-hidden="true"></i></label>
                         <input name="category" type="text" ng-model="query" placeholder="Try museums or malls..."> </input>
