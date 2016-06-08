@@ -92,8 +92,8 @@
         $scope.getWiki = function(poI){
             var wikidata = {};
             var wikiq = '';
-            wikiq = poI.marker.name.replace(/\s/g, "_");
-            /*console.log(wikiq);*/
+            wikiq = escape(poI.marker.name);
+           /* console.log(wikiq);*/
 
             var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + wikiq + '&format=json&callback=JSON_CALLBACK';
 
@@ -160,7 +160,7 @@
                         style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
                         position: google.maps.ControlPosition.TOP_RIGHT
                     },
-                    zoomControl: true,
+                    zoomControl: !$scope.IsMobile(), /*shows controls only for larger screens*/
                     zoomControlOptions: {
                         position: google.maps.ControlPosition.RIGHT_CENTER
                     },
