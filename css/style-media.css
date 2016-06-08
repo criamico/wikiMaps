@@ -52,13 +52,17 @@ h3 {
     padding: 0;
 }
 
+.form-row{
+        display: inline-block;
+}
+
 label{
     font-size: 0.8em;
 }
 
 input{
     padding: 2px;
-    margin: 0 25%;
+/*     margin: 0 25%; */
 }
 
 button{
@@ -72,7 +76,7 @@ button{
 }
 #submit-btn{
     background-color: #FF9800;
-    /* margin-bottom: 10px; */
+    margin: 0 10px;
 }
 
 /* Legend panel */
@@ -123,6 +127,10 @@ p{
     margin-left: 10px;
 }
 
+.author{
+    font-size: 0.8em;
+}
+
 /* Media queries */
 @media screen and (max-width: 768px) {
     .form-section, .legend{
@@ -140,14 +148,17 @@ p{
     .form{
         margin: 5% auto;
     }
+    .title{
+       /*  margin-top: 10px; */
+    }
 
     input{
-        max-width: 50%;
+        display: inline-block;
     }
     label{
         display: inline-block;
-        margin: 0 auto;
-        /* margin-top: 10px; */
+        margin-right: 5px;
+
     }
     #submit-btn{
         display: block;
@@ -177,7 +188,7 @@ p{
 
     .form{
         width: 55%;
-        margin: 5% auto;
+        margin: 0 auto;
     }
 
 }
@@ -205,16 +216,15 @@ p{
         margin-top: 5px;
     }
 
+    .form-row{
+        margin: 0 10px;
+    }
+
     label{
         width: initial;
-        margin: 10px;
         font-size: 0.8em;
     }
-    #submit-btn{
-        margin-left: auto;
-        margin-left: 15px;
-        margin-bottom: 10px;
-    }
+
     .legend{
         top: 90px;
         left: 10px;

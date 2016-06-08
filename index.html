@@ -6,6 +6,7 @@
     <meta author="criamico" >
     <title>wikiMaps</title>
     <link href='https://fonts.googleapis.com/css?family=Catamaran:400,600' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" >
     <link rel="stylesheet" href="css/style-media.css">
 </head>
 
@@ -15,24 +16,30 @@
             <div id="map"></div>
 
             <div class= "form-section">
+                <p class="title">What are you looking for?</p>
                 <form class="form" ng-show="tabIsSelected(1) || !IsMobile()" ng-submit="address !== '' && newSearch() ">
-                    <label> What are you looking for?</label>
+                    <div class="form-row">
+                        <label><i class="fa fa-search" aria-hidden="true"></i></label>
                         <input name="category" type="text" ng-model="query" placeholder="Try museums or malls..."> </input>
-
-                    <label> Where? </label>
+                    </div>
+                    <div class="form-row">
+                        <label><i class="fa fa-map" aria-hidden="true"></i></label>
                         <input name="city" type="text" ng-model="address" placeholder="Type a city" required> </input>
-
-                    <label> Radius:</label>
+                    </div>
+                    <div class="form-row">
+                        <label><i class="fa fa-dot-circle-o" aria-hidden="true"></i></label>
                         <input name="radius" type="number" ng-model="radius" placeholder="meters" required> </input>
+                    </div>
 
                     <button id="submit-btn" type="submit" >Submit</button>
                 </form> <!-- form -->
+                <p class="author">Created by <a href="https://github.com/criamico">criamico</a> - 2016</p>
             </div>
 
 
 
 
-                <div class="legend" ng-hide="panelHidden() || !tabIsSelected(2) ">
+                <div class="legend" ng-hide="panelHidden() || !tabIsSelected(2) " ng-cloak>
                     <ul class="list" >
                         <li class="item" ng-repeat="point in markersList | orderBy : 'title'">
                             <img class="icon" ng-src="{{point.icon}}">
