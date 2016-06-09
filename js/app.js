@@ -20,7 +20,7 @@
 
 
         $scope.IsMobile = function(){
-            return (window.innerWidth < 768) ? true : false;
+            return (window.innerWidth < 800) ? true : false;
 
         }
 
