@@ -158,7 +158,7 @@
                     mapTypeId: google.maps.MapTypeId.ROADMAP /*HYBRID, SATELLITE, TERRAIN*/,
                     mapTypeControlOptions: {
                         style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                        position: google.maps.ControlPosition.TOP_RIGHT
+                        position: google.maps.ControlPosition.RIGHT_CENTER
                     },
                     zoomControl: !$scope.IsMobile(), /*shows controls only for larger screens*/
                     zoomControlOptions: {
@@ -200,6 +200,29 @@
         };
 
 
+
+        // Try to get user location using ipinfo service at loading. If fails, the user is placed at a default location (Dublin)
+        $scope.getIpInfo = function(){
+            $http({
+                method: 'GET',
+                url: 'http://ipinfo.io/',
+                datatype: 'json'
+            })
+            .then(function(Ipdata, status, headers, config){
+                $scope.address = Ipdata.data.city;
+                $scope.newSearch();
+
+
+                }, function(Ipdata, status, headers, config){
+                       console.log("Retrieving ip info was not successful. We are placing you in a default location");
+                       $scope.address = 'Dublin';
+                       $scope.newSearch();
+            });
+
+        };
+
+
+
         $scope.current = {
             address: '',
             request: {}
@@ -207,12 +230,12 @@
 
 
         /*Initialize with a query - default is "Museum in Dublin"*/
-        $scope.address = 'Dublin';
+        /*$scope.address = 'Dublin';*/
         $scope.query =  '';
         $scope.radius = 1500; /*up to 50000 meters*/
 
-
-        $scope.newSearch();
+        $scope.getIpInfo();
+        /*$scope.newSearch();*/
 
 
 
