@@ -6,11 +6,11 @@ This AngularJS webapp lets you search points of interest in a chosen location, f
 
 Demo page visible at http://criamico.github.io/wikiMaps/
 
-
 APIs used:
 * https://angularjs.org/
 * https://developers.google.com/places/
 * https://developers.google.com/maps/
 * https://www.mediawiki.org/wiki/API:Search_and_discovery
+
 
 
