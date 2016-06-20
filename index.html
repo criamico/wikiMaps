@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app ="gmapsApp">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="css/style-media.css">
 </head>
 
-<body>
-    <div ng-app="mapsApp" ng-controller="MapCtrl" id= "Main">
+<body ng-app ="gmapsApp" ng-controller="MapCtrl" >
+    <div id= "Main">
         <div class= container>
             <div id="map"></div>
 
@@ -60,7 +60,14 @@
 
 
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+   <!--  <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?&libraries=places"></script> <!-- also include places APIs-->
+
+
     <script src="js/app.js" ></script>
+    <script src="js/IpLocService.js" ></script>
+    <script src="js/WikiService.js" ></script>
+    <script src="js/mapsController.js" ></script>
+
 </body>
 </html>
