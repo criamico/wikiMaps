@@ -101,7 +101,7 @@
                     }
                     $scope.selectTab(2);
                 } else
-                    alert('Sorry, Places query was not successful, status: ' + status);
+                    console.log('Sorry, Places query was not successful, status: ' + status);
             });
         };
 
@@ -159,7 +159,7 @@
 
 
                 } else
-                  alert('Sorry, Geocode query was not successful, status ' + geostatus);
+                  console.log('Sorry, Geocode query was not successful, status ' + geostatus);
             });
 
 
@@ -186,6 +186,10 @@
             .then(function(data) {
                 // call was successful
                 $scope.address = data.city;
+
+                // if the ip service returns nothing, pick a default location
+                if (data.city === '')
+                    $scope.address = 'Dublin';
                 $scope.newSearch();
 
             }, function(data) {
