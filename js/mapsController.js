@@ -68,6 +68,7 @@
 
             interestPoint.marker = new google.maps.Marker({
                 map: $scope.map,
+                animation: google.maps.Animation.DROP,
                 position: new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng()),
                 name: place.name,
                 address: place.formatted_address,

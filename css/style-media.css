@@ -26,11 +26,7 @@
     height: 100%;
     width: 100%;
 }
-h3 {
-    font-size: 1em;
-    margin: 0;
-    padding: 10px 20px 0px 10px;
-}
+
 
 .form-section, .legend{
     background-color: rgba(246, 248, 248, 0.9);
@@ -121,17 +117,26 @@ a {
 .item>a{
     color: #2B2B2A;
     text-decoration: none;
+    font-size: 1.4em;
+}
+
+.item>p>a{
     font-size: 1.2em;
 }
 
 p{
     margin: 0;
     margin-left: 10px;
+    font-size: 1em;
 }
 
+
 .author{
-    font-size: 0.7em;
+    font-size: 0.8em;
+
 }
+
+
 
 /* Media queries */
 @media screen and (max-width: 800px) {
@@ -208,6 +213,7 @@ p{
         flex-wrap: wrap;
         justify-content: flex-start;
         align-items: baseline;
+        width: 100%;
         /* text-align: center; */
     }
     .form{
